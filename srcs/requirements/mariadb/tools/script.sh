@@ -1,16 +1,12 @@
 #!bin/sh
 
-
-# sed -i "s|bind-address            = 127.0.0.1|bind-address            = 0.0.0.0|g" /etc/mysql/mariadb.conf.d/50-server.cnf
-
-
 # service mariadb restart
 
 # ss -utln
 
 service mariadb stop
 
-service --status-all
+# service --status-all
 
 if [ ! -d "/run/mysqld" ]; then
 	mkdir /run/mysqld;
@@ -40,6 +36,4 @@ EOF
 source /root/.bashrc
 
 
-
-exec "$@"
-# mariadbd --user=root
+mariadbd --user=root

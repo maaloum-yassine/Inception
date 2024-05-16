@@ -12,12 +12,8 @@ RUN		chmod +x /tmp/script.sh && /tmp/script.sh
 
 RUN		cd /etc/nginx/  && rm -rf /etc/nginx/default
 
-
 COPY	./conf/default /etc/nginx/sites-enabled
 
-
-
 EXPOSE	443
-
 
 CMD ["nginx", "-g", "daemon off;"]

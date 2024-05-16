@@ -72,7 +72,7 @@ services:
 
 volumes:
   volume_mariadb:
-    driver_opts: 
+    driver_opts:
       type: none
       o: bind
       device: ${PATH_VM_MARIADB}

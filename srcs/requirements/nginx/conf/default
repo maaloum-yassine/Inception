@@ -1,64 +1,22 @@
 
 
 server {
-		listen 443 http2 ssl;
-		listen [::]:443 http2 ssl;
-
+		listen 443  ssl;
+		listen [::]:443   ssl;
 		server_name ymaaloum.42.fr;
-
     	ssl_certificate /etc/nginx/certificate/ymaaloum.crt;
     	ssl_certificate_key /etc/nginx/certificate/ymaaloum.key;
-		# ssl_dhparam /etc/ssl/certs/dhparam.pem;
 		ssl_protocols TLSv1.2 TLSv1.3;
-
         root /var/www/html/wordpress;
 		index index.php;
-        include /etc/nginx/mime.types;
-
-		location / {
+		include /etc/nginx/mime.types;
+		location /
+		{
 			try_files $uri $uri/ =404;
 		}
-
 		location ~ \.php$
 		{
 			include snippets/fastcgi-php.conf;
-			fastcgi_pass wordpress:9000;
+			fastcgi_pass wordpress:9000; #PHP for wordpress will listen on the port 9000
 		}
-
 }
-
-
-
-
-
-#server {
-#    listen 443 ssl default_server;
-#    listen [::]:443 ssl;
-#    server_name ymaaloum.42.fr;
-#
-#    ssl_certificate /etc/nginx/certificate/ymaaloum.crt;
-#    ssl_certificate_key /etc/nginx/certificate/ymaaloum.key;
-#    ssl_protocols TLSv1.2 TLSv1.3;
-#    root /var/www/html/wordpress;
-#
-#   index  index.htm  index.php  index.nginx-debian.html;
-#
-#    location /
-#	{
-#        	try_files  / =404;
-#    }
-#
-#    location ~ \.php$ {
-#		fastcgi_split_path_info ^(.+\.php)(/.+)$;
-#		fastcgi_pass wordpress:9000; #PHP for wordpress will listen on the port 9000
-#		fastcgi_index index.php;
-#		include fastcgi_params;
-#		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-#		fastcgi_param SCRIPT_NAME $fastcgi_script_name;
-#	}
-#	  location ~ \.html$
-#	{
-#       		 try_files $uri $uri/ =404;
-#    }
-#}
-#
