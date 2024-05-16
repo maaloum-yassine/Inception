@@ -1,0 +1,83 @@
+version: '3.8'
+
+networks:
+  inception:
+    driver: bridge
+
+services:
+  mariadb:
+    container_name: mon_mariadb
+    build:
+      context: ./requirements/mariadb/
+      dockerfile: Dockerfile
+    image: mariadb_image
+    restart: always
+    networks:
+      - inception
+    volumes:
+      - volume_mariadb:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: ${NAME_DATABASE}
+      MYSQL_USER: ${USER_NAME}
+      MYSQL_PASSWORD: ${USER_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${ROOT_PASSWORD}
+
+  wordpress:
+      container_name: mon_wordpress
+      build:
+        context: ./requirements/wordpress
+        dockerfile: Dockerfile
+      image: wordpress_image
+      restart: always
+      volumes:
+      - volume_wordpress_nginx:/var/www/html/wordpress
+      networks:
+        - inception
+      expose:
+        - "9000"
+      depends_on:
+      - mariadb
+      environment:
+        MYSQL_DATABASE : ${NAME_DATABASE}
+        MYSQL_USER : ${USER_NAME}
+        MYSQL_PASSWORD : ${USER_PASSWORD}
+        LOCALHOST : ${DB_HOST}
+        URL_WP : ${URL_WP}
+        TITLE : ${TITLE}
+        ADMIN_WP : ${ADMIN_WP}
+        ADMIN_PASSWORD_WP : ${ADMIN_PASSWORD_WP}
+        ADMIN_EMAIL_WP : ${ADMIN_EMAIL_WP}
+        USER_WP : ${USER_WP}
+        USER_PASSWORD_WP : ${USER_PASSWORD_WP}
+        USER_EMAIL_WP : ${USER_EMAIL_WP}
+
+  nginx:
+        container_name: mon_nginx
+        build:
+          context: ./requirements/nginx
+          dockerfile: Dockerfile
+        image: nginx_image
+        restart: always
+        volumes:
+        - volume_wordpress_nginx:/var/www/html/wordpress
+        networks:
+          - inception
+        depends_on:
+        - mariadb
+        - wordpress
+        ports:
+        - "443:443"
+
+volumes:
+  volume_mariadb:
+    driver_opts: 
+      type: none
+      o: bind
+      device: ${PATH_VM_MARIADB}
+  volume_wordpress_nginx:
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PATH_VM_WORDPRESS_NGINX}
