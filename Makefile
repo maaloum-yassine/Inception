@@ -6,10 +6,9 @@
 #    By: ymaaloum <ymaaloum@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/10 14:33:45 by ymaaloum          #+#    #+#              #
-#    Updated: 2024/05/15 22:38:12 by ymaaloum         ###   ########.fr        #
+#    Updated: 2024/05/17 00:48:43 by ymaaloum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 all : up
 
@@ -25,9 +24,7 @@ stop :
 	@docker-compose -f ./srcs/docker-compose.yml stop
 
 start :
-	@docker-compose -f ./srcs/docker-compose.yml start
+	@docker-compose -f ./srcs/docker-compose.yml start  || true
 
 status :
-	@docker ps -a | grep mon_nginx
-
-
+	@docker ps -a | grep -q "|ym_mariadb\|ym_wordpress\|ym_nginx" || true
