@@ -8,6 +8,7 @@ COPY		./tools/script.sh /tmp/script.sh
 
 RUN			chmod +x /tmp/script.sh
 
+
 EXPOSE		3306
 
 ENTRYPOINT	["/bin/bash", "/tmp/script.sh"]
