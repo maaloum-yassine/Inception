@@ -26,7 +26,6 @@ wp user create --allow-root ${USER_WP}  ${USER_EMAIL_WP} --role=editor --user_pa
 
 rm -rf /tmp/script.sh
 
-# chmod 600 /run/secrets/*
 
 
 php-fpm8.2 -F
