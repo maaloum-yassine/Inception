@@ -6,7 +6,7 @@
 #    By: ymaaloum <ymaaloum@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/10 14:33:45 by ymaaloum          #+#    #+#              #
-#    Updated: 2024/05/17 00:48:43 by ymaaloum         ###   ########.fr        #
+#    Updated: 2024/05/21 06:22:33 by ymaaloum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ all : up
 up :
 	mkdir -p /home/${USER}/data/mariadb
 	mkdir -p /home/${USER}/data/wordpress
+	mkdir -p /home/${USER}/data/adminer
 	docker-compose -f ./srcs/docker-compose.yml up
 
 down :

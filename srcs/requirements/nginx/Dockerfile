@@ -10,9 +10,11 @@ COPY	./tools/script.sh /tmp/
 
 RUN		chmod +x /tmp/script.sh && /tmp/script.sh
 
-RUN		cd /etc/nginx/  && rm -rf /etc/nginx/default
+RUN		rm -rf /etc/nginx/sites-enabled/default
 
-COPY	./conf/default /etc/nginx/sites-enabled
+COPY	./conf/config_wordpress /etc/nginx/sites-enabled
+
+COPY	./conf/config_adminer /etc/nginx/sites-enabled
 
 EXPOSE	443
 
