@@ -28,4 +28,4 @@ start :
 	@docker-compose -f ./srcs/docker-compose.yml start  || true
 
 status :
-	@docker ps -a | grep -q "|ym_mariadb\|ym_wordpress\|ym_nginx" || true
+	@docker ps -a | grep -q "|ym_mariadb\|ym_wordpress\|ym_nginx\|ym_adminer" || true
