@@ -6,28 +6,28 @@ networks:
 
 services:
   mariadb:
-    container_name: ym_mariadb
-    build:
-      context: ./requirements/mariadb/
-      dockerfile: Dockerfile
-    image: mariadb_image
-    restart: always
-    networks:
-      - inception
-    volumes:
-      - volume_mariadb:/var/lib/mysql
-    ports:
-      - "3306:3306"
-    environment:
-      MYSQL_DATABASE: ${NAME_DATABASE}
-      MYSQL_USER: ${USER_NAME}
-      MYSQL_PASSWORD: ${USER_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${ROOT_PASSWORD}
-    secrets:
-      - db_name
-      - db_user_name
-      - db_user_password
-      - db_root_password
+      container_name: ym_mariadb
+      build:
+        context: ./requirements/mariadb/
+        dockerfile: Dockerfile
+      image: mariadb_image
+      restart: always
+      networks:
+        - inception
+      volumes:
+        - volume_mariadb:/var/lib/mysql
+      ports:
+        - "3306:3306"
+      environment:
+        MYSQL_DATABASE: ${NAME_DATABASE}
+        MYSQL_USER: ${USER_NAME}
+        MYSQL_PASSWORD: ${USER_PASSWORD}
+        MYSQL_ROOT_PASSWORD: ${ROOT_PASSWORD}
+      secrets:
+        - db_name
+        - db_user_name
+        - db_user_password
+        - db_root_password
   wordpress:
       container_name: ym_wordpress
       build:
@@ -76,6 +76,7 @@ services:
         volumes:
         - volume_wordpress_nginx:/var/www/html/wordpress
         - volume_adminer:/var/www/html/adminer
+        - volume_anon:/var/www/html/anon
         networks:
           - inception
         depends_on:
@@ -84,20 +85,50 @@ services:
         ports:
         - "443:443"
   adminer:
-    container_name: ym_adminer
-    build:
-      context: ./requirements/bonus/adminer
-      dockerfile: Dockerfile
-    image: adminer_image
-    restart: always
-    volumes:
-      - volume_adminer:/var/www/html/adminer
-    networks:
-      - inception
-    depends_on:
-      - mariadb
-    expose:
-      - "8080"
+        container_name: ym_adminer
+        build:
+          context: ./requirements/bonus/adminer
+          dockerfile: Dockerfile
+        image: adminer_image
+        restart: always
+        volumes:
+          - volume_adminer:/var/www/html/adminer
+        networks:
+          - inception
+        depends_on:
+          - mariadb
+          - wordpress
+        expose:
+          - "9090"
+  anon:
+        container_name: ym_anon
+        build:
+          context: ./requirements/bonus/site_statique
+          dockerfile: Dockerfile
+        image: anon_image
+        restart: on-failure
+        volumes:
+          - volume_anon:/var/www/html/anon
+        networks:
+          - inception
+        depends_on:
+          - nginx
+  cadvisor:
+        container_name: ym_cadvisor
+        build:
+          context: ./requirements/bonus/cadvisor
+          dockerfile: Dockerfile
+        image: cadvisor_image
+        restart: always
+        ports:
+          - "8080:8080"
+        networks:
+          - inception
+        volumes:
+        - /:/rootfs:ro
+        - /var/run:/var/run:ro
+        - /sys:/sys:ro
+        - /var/lib/docker/:/var/lib/docker:ro
 volumes:
   volume_mariadb:
     driver_opts:
@@ -114,6 +145,11 @@ volumes:
       type: none
       o: bind
       device: ${PATH_VM_ADMINER}
+  volume_anon:
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PATH_VM_ANON}
 secrets:
     db_name:
       file: ../secrets/db_name.txt

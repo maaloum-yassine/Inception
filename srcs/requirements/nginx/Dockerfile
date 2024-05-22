@@ -16,6 +16,8 @@ COPY	./conf/config_wordpress /etc/nginx/sites-enabled
 
 COPY	./conf/config_adminer /etc/nginx/sites-enabled
 
+COPY	./conf/config_anon  /etc/nginx/sites-enabled
+
 EXPOSE	443
 
 CMD ["nginx", "-g", "daemon off;"]

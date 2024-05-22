@@ -6,7 +6,7 @@
 #    By: ymaaloum <ymaaloum@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/10 14:33:45 by ymaaloum          #+#    #+#              #
-#    Updated: 2024/05/21 06:22:33 by ymaaloum         ###   ########.fr        #
+#    Updated: 2024/05/22 07:35:43 by ymaaloum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ up :
 	mkdir -p /home/${USER}/data/mariadb
 	mkdir -p /home/${USER}/data/wordpress
 	mkdir -p /home/${USER}/data/adminer
+	mkdir -p /home/${USER}/data/anon
 	docker-compose -f ./srcs/docker-compose.yml up
 
 down :
@@ -28,4 +29,6 @@ start :
 	@docker-compose -f ./srcs/docker-compose.yml start  || true
 
 status :
-	@docker ps -a | grep -q "|ym_mariadb\|ym_wordpress\|ym_nginx" || true
+	@docker ps -a | grep "ym_mariadb\|ym_wordpress\|ym_nginx\|ym_adminer\|ym_cadvisor\|ym_anon"	|| true
+
+
