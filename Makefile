@@ -6,7 +6,7 @@
 #    By: ymaaloum <ymaaloum@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/10 14:33:45 by ymaaloum          #+#    #+#              #
-#    Updated: 2024/05/24 03:42:51 by ymaaloum         ###   ########.fr        #
+#    Updated: 2024/05/24 07:52:48 by ymaaloum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,10 +26,6 @@ stop :
 	@docker-compose -f ./srcs/docker-compose.yml stop
 
 start :
-	mkdir -p /home/${USER}/data/mariadb
-	mkdir -p /home/${USER}/data/wordpress
-	mkdir -p /home/${USER}/data/adminer
-	mkdir -p /home/${USER}/data/anon
 	@docker-compose -f ./srcs/docker-compose.yml start  || true
 
 status :
