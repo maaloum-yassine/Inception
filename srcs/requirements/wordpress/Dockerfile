@@ -20,3 +20,4 @@ EXPOSE		9000
 
 ENTRYPOINT ["bash", "/tmp/script.sh"]
 
+CMD ["php-fpm8.2", "-F"]
