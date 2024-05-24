@@ -10,13 +10,17 @@ COPY	./tools/script.sh /tmp/
 
 RUN		chmod +x /tmp/script.sh && /tmp/script.sh
 
-RUN		rm -rf /etc/nginx/sites-enabled/default
+RUN		rm -rf /etc/nginx/sites-enabled/default && rm -rf /etc/nginx/sites-available/default
 
-COPY	./conf/config_wordpress /etc/nginx/sites-enabled
+COPY	./conf/config_wordpress /etc/nginx/sites-available
 
-COPY	./conf/config_adminer /etc/nginx/sites-enabled
+COPY	./conf/config_adminer /etc/nginx/sites-available
 
-COPY	./conf/config_anon  /etc/nginx/sites-enabled
+COPY	./conf/config_anon  /etc/nginx/sites-available
+
+RUN 	ln -s	/etc/nginx/sites-available/config_wordpress  /etc/nginx/sites-enabled/config_wordpress \
+		&& ln -s	/etc/nginx/sites-available/config_adminer  /etc/nginx/sites-enabled/config_adminer \
+		&& ln -s	/etc/nginx/sites-available/config_anon  /etc/nginx/sites-enabled/config_anon
 
 EXPOSE	443
 

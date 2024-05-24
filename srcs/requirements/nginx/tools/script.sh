@@ -17,5 +17,3 @@ cat > /etc/nginx/nginx.conf << EOF
 	}
 EOF
 
-
-mkdir -p /var/www/html/wordpress
