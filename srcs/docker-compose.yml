@@ -129,6 +129,22 @@ services:
         - /var/run:/var/run:ro
         - /sys:/sys:ro
         - /var/lib/docker/:/var/lib/docker:ro
+  redis:
+        container_name: ym_redis
+        build:
+          context: ./requirements/bonus/redis
+          dockerfile: Dockerfile
+        image: redis_image
+        restart: always
+        volumes:
+          - volume_wordpress_nginx:/var/www/html
+        networks:
+          - inception
+        depends_on:
+          - mariadb
+          - wordpress
+        ports:
+          - '6379:6379'
 volumes:
   volume_mariadb:
     driver_opts:

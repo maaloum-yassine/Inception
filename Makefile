@@ -6,7 +6,7 @@
 #    By: ymaaloum <ymaaloum@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/10 14:33:45 by ymaaloum          #+#    #+#              #
-#    Updated: 2024/05/24 07:52:48 by ymaaloum         ###   ########.fr        #
+#    Updated: 2024/05/25 01:58:26 by ymaaloum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,5 +30,5 @@ start :
 
 status :
 	@docker ps -a | grep "ym_mariadb\|ym_wordpress\|ym_nginx\|ym_adminer\|ym_cadvisor\|ym_anon"	|| true
-
+# https://www.easyhoster.com/aide/redis-wordpress/
 

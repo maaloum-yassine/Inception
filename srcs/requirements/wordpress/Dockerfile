@@ -1,10 +1,10 @@
 FROM	debian:bookworm
 
-RUN		apt update && apt install -y wget iproute2 php8.2 php8.2-fpm php8.2-mysql mariadb-client telnet iputils-ping
+RUN		apt update -y && apt install -y wget iproute2 php8.2 php8.2-fpm php8.2-mysql mariadb-client telnet iputils-ping
 
 RUN		apt upgrade -y
 
-RUN		mkdir -p /var/www/html/wordpress && chmod 655 /var/www/html/wordpress
+RUN		mkdir -p /var/www/html/wordpress && chmod -R 755 /var/www/html/wordpress
 
 RUN		wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod 777 wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
 
