@@ -5,9 +5,7 @@
     sed -i "s|# maxmemory-policy noeviction|maxmemory-policy allkeys-lru|g" /etc/redis/redis.conf
 
 
-redis-server --protected-mode no
-
-# exec "$@"
+exec "$@"
 #  redis-cli -h ym_redis monitor
 # <?php
 # $redis = new Redis();

@@ -56,6 +56,8 @@ services:
         USER_WP : ${USER_WP}
         USER_PASSWORD_WP : ${USER_PASSWORD_WP}
         USER_EMAIL_WP : ${USER_EMAIL_WP}
+        WP_REDIS_HOST: ${WP_REDIS_HOST}
+        WP_REDIS_PORT : ${WP_REDIS_PORT}
       secrets:
         - db_name
         - db_user_name
@@ -66,6 +68,8 @@ services:
         - wp_admin_email
         - wp_user_password
         - wp_user_email
+        - wp_redis_host
+        - wp_redis_port
   nginx:
         container_name: ym_nginx
         build:
@@ -187,3 +191,7 @@ secrets:
       file: ../secrets/wp_user_password.txt
     wp_user_email:
       file: ../secrets/wp_user_email.txt
+    wp_redis_host:
+      file: ../secrets/wp_redis_host.txt
+    wp_redis_port:
+      file: ../secrets/wp_redis_port.txt

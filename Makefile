@@ -6,7 +6,7 @@
 #    By: ymaaloum <ymaaloum@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/10 14:33:45 by ymaaloum          #+#    #+#              #
-#    Updated: 2024/05/25 01:58:26 by ymaaloum         ###   ########.fr        #
+#    Updated: 2024/05/26 07:13:17 by ymaaloum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,5 @@ start :
 	@docker-compose -f ./srcs/docker-compose.yml start  || true
 
 status :
-	@docker ps -a | grep "ym_mariadb\|ym_wordpress\|ym_nginx\|ym_adminer\|ym_cadvisor\|ym_anon"	|| true
-# https://www.easyhoster.com/aide/redis-wordpress/
+	@docker ps -a | grep "ym_mariadb\|ym_wordpress\|ym_nginx\|ym_adminer\|ym_cadvisor\|ym_anon\|ym_redis"	|| true
 

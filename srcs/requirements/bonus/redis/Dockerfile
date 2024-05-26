@@ -10,4 +10,4 @@ EXPOSE 		6379
 
 ENTRYPOINT ["bash", "/tmp/script.sh"]
 
-# CMD ["redis-server","--protected-mode","no"]
+CMD ["redis-server","--protected-mode","no"]
