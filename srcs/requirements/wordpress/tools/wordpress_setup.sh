@@ -1,12 +1,22 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    wordpress_setup.sh                                 :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ymaaloum <ymaaloum@student.1337.ma>        +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/05/26 10:08:19 by ymaaloum          #+#    #+#              #
+#    Updated: 2024/05/26 10:18:53 by ymaaloum         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 #!/bin/sh
 
 
 cd /var/www/html/wordpress
 
-
 if ! wp --allow-root core is-installed; then
 
-	echo "1337"
 	DB_NAME=$(cat $MYSQL_DATABASE)
 	DB_USER=$(cat $MYSQL_USER)
 	DB_PASSWORD=$(cat $MYSQL_PASSWORD)
@@ -39,4 +49,3 @@ if ! wp --allow-root core is-installed; then
 fi
 
 exec "$@"
-

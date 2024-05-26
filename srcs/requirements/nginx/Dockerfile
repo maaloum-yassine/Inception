@@ -6,11 +6,12 @@ RUN		apt-get update && apt-get install -y nginx openssl
 
 RUN		apt-get install curl -y
 
-COPY	./tools/script.sh /tmp/
+COPY	./tools/nginx_setup.sh /tmp/
 
-RUN		chmod +x /tmp/script.sh && /tmp/script.sh
+RUN		chmod +x /tmp/nginx_setup.sh && /tmp/nginx_setup.sh
 
-RUN		rm -rf /etc/nginx/sites-enabled/default && rm -rf /etc/nginx/sites-available/default
+RUN		rm -rf /etc/nginx/sites-enabled/default && rm -rf /etc/nginx/sites-available/default \
+		&& rm -rf /tmp/nginx_setup.sh
 
 COPY	./conf/config_wordpress /etc/nginx/sites-available
 
@@ -24,4 +25,4 @@ RUN 	ln -s	/etc/nginx/sites-available/config_wordpress  /etc/nginx/sites-enabled
 
 EXPOSE	443
 
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["nginx", "-g", "daemon off;"]

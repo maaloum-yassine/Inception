@@ -12,12 +12,12 @@ RUN		sed -i "s|listen = /run/php/php8.2-fpm.sock|listen = 0.0.0.0:9000|g" /etc/p
 
 COPY	./conf/wp-config.php  /var/www/html/wordpress
 
-COPY	./tools/script.sh /tmp/script.sh
+COPY	./tools/wordpress_setup.sh /tmp/wordpress_setup.sh
 
-RUN 		chmod +x /tmp/script.sh
+RUN 		chmod +x /tmp/wordpress_setup.sh
 
 EXPOSE		9000
 
-ENTRYPOINT ["bash", "/tmp/script.sh"]
+ENTRYPOINT ["bash", "/tmp/wordpress_setup.sh"]
 
 CMD ["php-fpm8.2", "-F"]
