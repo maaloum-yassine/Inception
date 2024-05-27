@@ -10,7 +10,7 @@ services:
       build:
         context: ./requirements/mariadb/
         dockerfile: Dockerfile
-      image: mariadb_image
+      image: mariadb
       restart: always
       networks:
         - inception
@@ -33,7 +33,7 @@ services:
       build:
         context: ./requirements/wordpress
         dockerfile: Dockerfile
-      image: wordpress_image
+      image: wordpress
       restart: always
       volumes:
       - volume_wordpress_nginx:/var/www/html/wordpress
@@ -75,7 +75,7 @@ services:
         build:
           context: ./requirements/nginx
           dockerfile: Dockerfile
-        image: nginx_image
+        image: nginx
         restart: always
         volumes:
         - volume_wordpress_nginx:/var/www/html/wordpress
@@ -93,7 +93,7 @@ services:
         build:
           context: ./requirements/bonus/adminer
           dockerfile: Dockerfile
-        image: adminer_image
+        image: adminer
         restart: always
         volumes:
           - volume_adminer:/var/www/html/adminer
@@ -109,7 +109,7 @@ services:
         build:
           context: ./requirements/bonus/site_statique
           dockerfile: Dockerfile
-        image: anon_image
+        image: anon
         restart: on-failure
         volumes:
           - volume_anon:/var/www/html/anon
@@ -122,7 +122,7 @@ services:
         build:
           context: ./requirements/bonus/cadvisor
           dockerfile: Dockerfile
-        image: cadvisor_image
+        image: cadvisor
         restart: always
         ports:
           - "8080:8080"
@@ -138,7 +138,7 @@ services:
         build:
           context: ./requirements/bonus/redis
           dockerfile: Dockerfile
-        image: redis_image
+        image: redis
         restart: always
         volumes:
           - volume_wordpress_nginx:/var/www/html

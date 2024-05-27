@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    script.sh                                          :+:      :+:    :+:    #
+#    mariadb_setup.sh                                   :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: ymaaloum <ymaaloum@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/26 09:30:01 by ymaaloum          #+#    #+#              #
-#    Updated: 2024/05/26 10:05:40 by ymaaloum         ###   ########.fr        #
+#    Updated: 2024/05/27 07:13:02 by ymaaloum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,14 +21,9 @@ if [ ! -d "/var/lib/mysql/$DB_NAME" ]; then
 	DB_PASSWORD=$(cat $MYSQL_PASSWORD)
 	DB_ROOT_PASSWORD=$(cat $MYSQL_ROOT_PASSWORD)
 
-	if [ ! -d "/run/mysqld" ]; then
-	        mkdir /run/mysqld;
-	fi
+	#service mysql stop
 
-
-	service mariadb stop
-
-	# service --status-all
+	#service --status-all
 
 cat << EOF > /tmp/wp.sql
 	    FLUSH PRIVILEGES;
@@ -39,18 +34,19 @@ cat << EOF > /tmp/wp.sql
 	    ALTER USER 'root'@'localhost' IDENTIFIED BY '${DB_ROOT_PASSWORD}';
 EOF
 
-	mariadbd --user=root --bootstrap < /tmp/wp.sql;
+	mysqld --user=mysql --bootstrap < /tmp/wp.sql;
 	rm -f /tmp/wp.sql;
 
 
 
 cat << EOF >> /root/.bashrc
-	    alias root='mariadb --user=root -p'
-	    alias user='mariadb --user=$DB_USER -p'
+	    alias root='mysql --user=root -p'
+	    alias user='mysql --user=$DB_USER -p'
 EOF
 
 	source /root/.bashrc
 fi
 
 echo "La base de données $DB_NAME existe. Démarrage de MariaDB..."
+
 exec "$@"
