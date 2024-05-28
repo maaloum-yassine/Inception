@@ -121,14 +121,15 @@ services:
           context: ./requirements/bonus/site_statique
           dockerfile: Dockerfile
         image: anon
-        restart: on-failure
+        restart: always
         volumes:
           - volume_anon:/var/www/html/anon
         networks:
           - inception
         depends_on:
           - nginx
-
+        ports:
+        - "3000:3000"
 
   cadvisor:
         container_name: ym_cadvisor
@@ -146,6 +147,9 @@ services:
         - /var/run:/var/run:ro
         - /sys:/sys:ro
         - /var/lib/docker/:/var/lib/docker:ro
+
+
+
 
   redis:
         container_name: ym_redis
