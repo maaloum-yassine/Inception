@@ -28,6 +28,9 @@ services:
         - db_user_name
         - db_user_password
         - db_root_password
+
+
+
   wordpress:
       container_name: ym_wordpress
       build:
@@ -70,6 +73,9 @@ services:
         - wp_user_email
         - wp_redis_host
         - wp_redis_port
+
+
+
   nginx:
         container_name: ym_nginx
         build:
@@ -88,6 +94,8 @@ services:
         - wordpress
         ports:
         - "443:443"
+
+
   adminer:
         container_name: ym_adminer
         build:
@@ -104,6 +112,9 @@ services:
           - wordpress
         expose:
           - "8081"
+
+
+
   anon:
         container_name: ym_anon
         build:
@@ -117,6 +128,8 @@ services:
           - inception
         depends_on:
           - nginx
+
+
   cadvisor:
         container_name: ym_cadvisor
         build:
@@ -133,6 +146,7 @@ services:
         - /var/run:/var/run:ro
         - /sys:/sys:ro
         - /var/lib/docker/:/var/lib/docker:ro
+
   redis:
         container_name: ym_redis
         build:
@@ -149,6 +163,30 @@ services:
           - wordpress
         ports:
           - '6379:6379'
+
+
+  ftp-server:
+      container_name: ym_ftp-server
+      build:
+        context: ./requirements/bonus/ftp-server
+        dockerfile: Dockerfile
+      image: ftp-server
+      restart: always
+      volumes:
+        - "volume_wordpress_nginx:/var/www/html/ftp"
+      ports:
+        - "21:21"
+        - "21100-21110:21100-21110"
+      networks:
+        - inception
+      environment:
+        FTP_USER: ${FTP_USER}
+        FTP_PASSWORD: ${FTP_PASSWORD}
+      secrets:
+        - ftp_user
+        - ftp_password
+
+
 volumes:
   volume_mariadb:
     driver_opts:
@@ -195,3 +233,8 @@ secrets:
       file: ../secrets/wp_redis_host.txt
     wp_redis_port:
       file: ../secrets/wp_redis_port.txt
+    ftp_user:
+      file: ../secrets/ftp_user.txt
+    ftp_password:
+      file: ../secrets/ftp_password.txt
+

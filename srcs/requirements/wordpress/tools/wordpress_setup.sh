@@ -6,7 +6,7 @@
 #    By: ymaaloum <ymaaloum@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/26 10:08:19 by ymaaloum          #+#    #+#              #
-#    Updated: 2024/05/26 10:18:53 by ymaaloum         ###   ########.fr        #
+#    Updated: 2024/05/28 15:57:48 by ymaaloum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,6 @@ if ! wp --allow-root core is-installed; then
 	wp plugin update --all --allow-root
 	wp redis enable --allow-root
 	chown -R www-data:www-data /var/www/html/wordpress/
-
 fi
 
 exec "$@"

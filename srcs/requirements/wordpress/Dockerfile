@@ -6,7 +6,7 @@ RUN		apt update -y && apt install -y wget iproute2 php php-fpm php-mysql mariadb
 RUN		apt upgrade -y
 
 RUN		mkdir -p /var/www/html/wordpress \
-		&& chmod -R 755 /var/www/html/wordpress \
+		&& chmod -R 76 /var/www/html/wordpress \
 		&& mkdir -p /run/php
 
 RUN		wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod 777 wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
