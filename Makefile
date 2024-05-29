@@ -6,7 +6,7 @@
 #    By: ymaaloum <ymaaloum@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/10 14:33:45 by ymaaloum          #+#    #+#              #
-#    Updated: 2024/05/27 07:43:24 by ymaaloum         ###   ########.fr        #
+#    Updated: 2024/05/29 16:57:32 by ymaaloum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,5 +29,5 @@ start :
 	@docker-compose -f ./srcs/docker-compose.yml start  || true
 
 status :
-	@docker ps -a | grep "ym_mariadb\|ym_wordpress\|ym_nginx\|ym_adminer\|ym_cadvisor\|ym_anon\|ym_redis"	|| true
+	@docker ps -a | grep "ym_mariadb\|ym_wordpress\|ym_nginx\|ym_adminer\|ym_cadvisor\|ym_anon\|ym_redis\|ym_ftp-server"	|| true
 

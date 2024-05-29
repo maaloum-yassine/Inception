@@ -6,7 +6,7 @@
 #    By: ymaaloum <ymaaloum@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/27 07:31:55 by ymaaloum          #+#    #+#              #
-#    Updated: 2024/05/28 19:20:13 by ymaaloum         ###   ########.fr        #
+#    Updated: 2024/05/29 17:01:52 by ymaaloum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,6 @@
 
 
 if [ ! -f "/etc/vsftpd.conf" ]; then
-
-
 
 	chown nobody:nogroup /var/www/html/ftp
 	FTP_USER=$(cat $FTP_USER)
