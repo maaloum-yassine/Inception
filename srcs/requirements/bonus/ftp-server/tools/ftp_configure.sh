@@ -15,7 +15,6 @@
 
 if [ ! -f "/etc/vsftpd.conf" ]; then
 
-	chown nobody:nogroup /var/www/html/ftp
 	FTP_USER=$(cat $FTP_USER)
 	FTP_PWD=$(cat $FTP_PASSWORD)
 
@@ -26,11 +25,15 @@ if [ ! -f "/etc/vsftpd.conf" ]; then
 	# getent passwd $FTP_USER
 	echo "$FTP_USER" >> /etc/vsftpd.userlist
 	mkdir -p /var/www/html/ftp
+	chown nobody:nogroup /var/www/html/ftp
 	chmod a-w /var/www/html/ftp
 	chown $FTP_USER:$FTP_USER /var/www/html/ftp
-	#sleep 80;
-	#chmod -R 767 /var/www/html/ftp
+	# sleep 80;
+	# chmod -R 767 /var/www/html/ftp
+	service vsftpd stop
 fi
 
-service vsftpd stop
+vsftpd -c /etc/vsftpd.conf
+
 exec "$@"
+  

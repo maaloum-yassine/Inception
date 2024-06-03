@@ -14,4 +14,4 @@ RUN		chmod +x /tmp/ftp_configure.sh  && chmod 644 /etc/new_vsftpd.conf
 
 ENTRYPOINT ["bash", "/tmp/ftp_configure.sh"]
 
-CMD ["/usr/sbin/vsftpd"]
+CMD ["vsftpd"]

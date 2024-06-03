@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    mariadb_setup.sh                                   :+:      :+:    :+:    #
+#    mariadb_configure.sh                               :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: ymaaloum <ymaaloum@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/26 09:30:01 by ymaaloum          #+#    #+#              #
-#    Updated: 2024/05/27 07:13:02 by ymaaloum         ###   ########.fr        #
+#    Updated: 2024/06/03 17:02:04 by ymaaloum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,15 +37,15 @@ EOF
 	mysqld --user=mysql --bootstrap < /tmp/wp.sql;
 	rm -f /tmp/wp.sql;
 
+fi
 
 
 cat << EOF >> /root/.bashrc
-	    alias root='mysql --user=root -p'
-	    alias user='mysql --user=$DB_USER -p'
+	alias root='mysql --user=root -p'
+	alias user='mysql --user=$DB_USER -p'
 EOF
 
 	source /root/.bashrc
-fi
 
 echo "La base de données $DB_NAME existe. Démarrage de MariaDB..."
 

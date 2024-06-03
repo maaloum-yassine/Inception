@@ -27,10 +27,5 @@ fi
 
 exec "$@"
 
-#  redis-cli -h ym_redis monitor
-# <?php
-# $redis = new Redis();
-# $redis->connect('ym_redis', 6379);
-# echo "Connection to server successful!";
-# echo "Server is running: " . $redis->ping();
-# ?>
+
+#  redis-cli -h IPadress monitor

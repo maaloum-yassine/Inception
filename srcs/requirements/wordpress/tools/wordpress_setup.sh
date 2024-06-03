@@ -39,7 +39,7 @@ if ! wp --allow-root core is-installed; then
 
 	wp core install --allow-root --url=${URL_WP} --title=${TITLE}  --admin_user=${ADMIN_WP} --admin_password=${ADMIN_PASSWORD_WP} --admin_email=${ADMIN_EMAIL_WP}
 	wp user create --allow-root ${USER_WP}  ${USER_EMAIL_WP} --role=editor --user_pass=${USER_PASSWORD_WP}
-	wp theme install astra --activate --allow-root
+	# wp theme install astra --activate --allow-root
 
 	wp plugin install redis-cache --activate --allow-root
 	wp plugin update --all --allow-root

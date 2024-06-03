@@ -6,8 +6,6 @@ RUN 	apt install nodejs npm -y
 
 COPY 	tools /var/www/html/
 
-#COPY 	./anon /var/www/html/
-
 WORKDIR /var/www/html/
 
 RUN npm init -y && npm install express -y

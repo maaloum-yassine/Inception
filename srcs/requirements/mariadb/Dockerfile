@@ -18,3 +18,4 @@ ENTRYPOINT	["/bin/bash", "/tmp/mariadb_configure.sh"]
 
 
 CMD ["mysqld"]
+
