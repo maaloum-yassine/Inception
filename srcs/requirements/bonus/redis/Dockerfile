@@ -1,10 +1,10 @@
-FROM debian:buster
+FROM 		debian:buster
 
-RUN apt-get -y update && apt install redis-server -y
+RUN 		apt-get -y update && apt install redis-server -y
 
-COPY	./tools/redis_configure.sh /tmp/redis_configure.sh
+COPY		./tools/redis_configure.sh /tmp/redis_configure.sh
 
-RUN 	chmod +x /tmp/redis_configure.sh
+RUN 		chmod +x /tmp/redis_configure.sh
 
 EXPOSE 		6379
 

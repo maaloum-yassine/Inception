@@ -90,7 +90,6 @@ services:
         - wordpress
         ports:
         - "443:443"
-        - "80:80"
 
   adminer:
         container_name: adminer
