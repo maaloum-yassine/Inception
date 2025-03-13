@@ -4,7 +4,7 @@
 
 ## 🎥 Score 🥇✅
 <p align="center">
-  <img src="https://github.com/maaloum-yassine/42/blob/main/score/Inception42.png" alt="Score 42 project 115"/>
+  <img src="https://github.com/maaloum-yassine/42/blob/main/score/Inception42.png" alt="Score 42 project 125"/>
 </p>
 
 ---
@@ -13,7 +13,7 @@
 <div align="center">
   <strong style="font-size: 20px; color: #0073e6;">Click below to watch the Inception42 project:</strong>  
   <br>
-  <a href="https://vimeo.com/manage/videos/1065029898" style="font-size: 22px; font-weight: bold; color: #FF6347; text-decoration: none; background-color: #f0f0f0; padding: 15px 30px; border-radius: 8px; border: 2px solid #FF6347;">
+  <a href="https://vimeo.com/1065029898" style="font-size: 22px; font-weight: bold; color: #FF6347; text-decoration: none; background-color: #f0f0f0; padding: 15px 30px; border-radius: 8px; border: 2px solid #FF6347;">
     ➡️ **[Watch my Inception_42 on Vimeo]** ⬅️
   </a>
 </div>
