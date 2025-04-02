@@ -22,7 +22,7 @@
 
 ## Project Overview
 
-The Inception project at 42 aims to create a complete infrastructure using Docker to deploy multiple services such as MariaDB, WordPress, Nginx, Redis, Adminer, an FTP server, etc. Each service is containerized in isolation and interconnected through a Docker network, ensuring modularity and security. This project helps develop skills in system administration, virtualization, and container orchestration, while following DevOps best practices.
+The Inception project at 42 aims to create a complete infrastructure using Docker to deploy multiple services such as MariaDB, WordPress, Nginx, Redis, Adminer, cAdvisor,an FTP server, etc. Each service is containerized in isolation and interconnected through a Docker network, ensuring modularity and security. This project helps develop skills in system administration, virtualization, and container orchestration, while following DevOps best practices.
 # Prerequisites
 Make sure you have installed all of the following prerequisites on your machine:
 - Docker
