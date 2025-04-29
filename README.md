@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/maaloum-yassine/42/blob/main/logo_project42/inceptionn.png" alt="Cub3D 42 project badge"/>
+  <img src="https://github.com/maaloum-yassine/42/blob/main/logo_project42/inceptionn.png" alt="Inceptionn 42 project badge"/>
 </p>
 
 ## 🎥 Score 🥇✅
